@@ -152,8 +152,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchPanel.add(searchByIdField = new JTextField(20), "width 200:200:200, growx, pushx");
 		searchByIdField.addActionListener(this);
 		searchByIdField.setDocument(new JTextFieldLimit(20));
-		searchPanel.add(searchId = new JButton(new ImageIcon(
-				new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+		searchPanel.add(
+				searchId = new JButton(new ImageIcon(
+						new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
 				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
 		searchId.addActionListener(this);
 		searchId.setToolTipText("Search Employee By ID");
@@ -163,8 +164,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchBySurnameField.addActionListener(this);
 		searchBySurnameField.setDocument(new JTextFieldLimit(20));
 		searchPanel.add(
-				searchSurname = new JButton(new ImageIcon(new ImageIcon("imgres.png").getImage()
-						.getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+				searchSurname = new JButton(new ImageIcon(
+						new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
 				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
 		searchSurname.addActionListener(this);
 		searchSurname.setToolTipText("Search Employee By Surname");
@@ -183,8 +184,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		first.addActionListener(this);
 		first.setToolTipText("Display first Record");
 
-		navigPanel.add(previous = new JButton(new ImageIcon(new ImageIcon("previous.png").getImage()
-				.getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
+		navigPanel.add(previous = new JButton(new ImageIcon(
+				new ImageIcon("previous.png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
 		previous.setPreferredSize(new Dimension(17, 17));
 		previous.addActionListener(this);
 		previous.setToolTipText("Display next Record");
@@ -653,12 +654,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	public boolean correctPps(String pps, long currentByte) {
 		boolean ppsExist = false;
 		// check for correct PPS format based on assignment description
-		if (pps.length() == 8 || pps.length() == 9) {
-			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
-					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3)) 
-					&& Character.isDigit(pps.charAt(4))	&& Character.isDigit(pps.charAt(5)) 
-					&& Character.isDigit(pps.charAt(6))	&& Character.isLetter(pps.charAt(7))
-					&& (pps.length() == 8 || Character.isLetter(pps.charAt(8)))) {
+		if (pps.length() == 7) {
+			if (pps.matches("[0-9][0-9][0-9][0-9][0-9][0-9][a-zA-Z]")) {
 				// open file for reading
 				application.openReadFile(file.getAbsolutePath());
 				// look in file is PPS already in use

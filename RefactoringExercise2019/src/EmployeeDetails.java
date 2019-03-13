@@ -306,8 +306,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchBySurnameField.setText("");
 		// if Employee is null or ID is 0 do nothing else display Employee
 		// details
-		if (thisEmployee == null) {
-		} else if (thisEmployee.getEmployeeId() == 0) {
+		if (thisEmployee == null || thisEmployee.getEmployeeId() == 0) {
 		} else {
 			// find corresponding gender combo box value to current employee
 			while (!found && countGender < gender.length - 1) {
@@ -677,8 +676,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		String file = fileName.toString();
 
 		// check if last characters in file name is .dat
-		if (file.endsWith(".dat"));
-			checkFile = true;
+		if (file.endsWith(".dat"))
+			;
+		checkFile = true;
 		return checkFile;
 	}// end checkFileName
 

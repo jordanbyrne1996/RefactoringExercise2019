@@ -152,9 +152,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchPanel.add(searchByIdField = new JTextField(20), "width 200:200:200, growx, pushx");
 		searchByIdField.addActionListener(this);
 		searchByIdField.setDocument(new JTextFieldLimit(20));
-		searchPanel.add(
-				searchId = new JButton(new ImageIcon(
-						new ImageIcon("search-icon.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+		searchPanel.add(searchId = new JButton(new ImageIcon(
+				new ImageIcon("search-icon.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
 				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
 		searchId.addActionListener(this);
 		searchId.setToolTipText("Search Employee By ID");
@@ -164,8 +163,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchBySurnameField.addActionListener(this);
 		searchBySurnameField.setDocument(new JTextFieldLimit(20));
 		searchPanel.add(
-				searchSurname = new JButton(new ImageIcon(
-						new ImageIcon("search-icon.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+				searchSurname = new JButton(new ImageIcon(new ImageIcon("search-icon.png").getImage()
+						.getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
 				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
 		searchSurname.addActionListener(this);
 		searchSurname.setToolTipText("Search Employee By Surname");
@@ -307,7 +306,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// if Employee is null or ID is 0 do nothing else display Employee
 		// details
 		if (thisEmployee != null && thisEmployee.getEmployeeId() != 0) {
-		
+
 			// find corresponding gender combo box value to current employee
 			while (!found && countGender < gender.length - 1) {
 				if (Character.toString(thisEmployee.getGender()).equalsIgnoreCase(gender[countGender]))
@@ -335,10 +334,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				fullTimeCombo.setSelectedIndex(1);
 			else
 				fullTimeCombo.setSelectedIndex(2);
-		
-		change = false;
+
+			change = false;
 		}
-		
+
 	}// end display records
 
 	// display Employee summary dialog
@@ -935,26 +934,24 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				} // end if
 					// else exit application
 				else if (returnVal == JOptionPane.NO_OPTION) {
-					// delete generated file if user chooses not to save file
-					if (file.getName().equals(generatedFileName))
-						file.delete();// delete file
-					System.exit(0);// exit application
+					deleteGeneratedFile();
 				} // end else if
 			} // end if
 			else {
 				// delete generated file if user chooses not to save file
-				if (file.getName().equals(generatedFileName))
-					file.delete();// delete file
-				System.exit(0);// exit application
-			} // end else
+				deleteGeneratedFile();
 				// else exit application
-		} else {
+			}} else {
 			// delete generated file if user chooses not to save file
-			if (file.getName().equals(generatedFileName))
-				file.delete();// delete file
-			System.exit(0);// exit application
-		} // end else
-	}// end exitApp
+				deleteGeneratedFile();
+			
+		}}// end exitApp
+
+	public void deleteGeneratedFile() {
+		if (file.getName().equals(generatedFileName))
+			file.delete();// delete file
+		System.exit(0);// exit application
+	}
 
 	// generate 20 character long file name
 	private String getFileName() {

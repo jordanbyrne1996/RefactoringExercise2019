@@ -306,8 +306,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchBySurnameField.setText("");
 		// if Employee is null or ID is 0 do nothing else display Employee
 		// details
-		if (thisEmployee == null || thisEmployee.getEmployeeId() == 0) {
-		} else {
+		if (thisEmployee != null && thisEmployee.getEmployeeId() != 0) {
+		
 			// find corresponding gender combo box value to current employee
 			while (!found && countGender < gender.length - 1) {
 				if (Character.toString(thisEmployee.getGender()).equalsIgnoreCase(gender[countGender]))
@@ -335,8 +335,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				fullTimeCombo.setSelectedIndex(1);
 			else
 				fullTimeCombo.setSelectedIndex(2);
-		}
+		
 		change = false;
+		}
+		
 	}// end display records
 
 	// display Employee summary dialog

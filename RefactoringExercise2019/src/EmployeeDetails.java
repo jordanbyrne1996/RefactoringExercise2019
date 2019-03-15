@@ -701,7 +701,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end checkForChanges
 
 	// check for input in text fields
-	private boolean checkInput() {
+	/*private boolean checkInput() {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display
 		// message
@@ -755,8 +755,42 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			setToWhite();
 
 		return valid;
+	}*/
+	
+	public boolean checkInput(){
+		Validator v = new Validator();
+		//v.validate2(ppsField, searchBySurnameField, firstNameField, genderCombo, departmentCombo);
+		boolean valid = v.validate2(ppsField, searchBySurnameField, firstNameField, genderCombo, departmentCombo);
+		
+		try {// try to get values from text field
+			Double.parseDouble(salaryField.getText());
+			// check if salary is greater than 0
+			if (Double.parseDouble(salaryField.getText()) < 0) {
+				salaryField.setBackground(Colors.color_red);
+				valid = false;
+			} // end if
+		} // end try
+		catch (NumberFormatException num) {
+			if (salaryField.isEditable()) {
+				salaryField.setBackground(Colors.color_red);
+				valid = false;
+			} // end if
+		} // end catch
+		if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
+			fullTimeCombo.setBackground(Colors.color_red);
+			valid = false;
+		} // end if
+			// display message if any input or format is wrong
+		if (!valid)
+			JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
+		// set text field to white colour if text fields are editable
+		if (ppsField.isEditable())
+			setToWhite();
+		
+		return valid;
 	}
-
+	
+	
 	// set text field background colour to white
 	private void setToWhite() {
 		ppsField.setBackground(UIManager.getColor("TextField.background"));

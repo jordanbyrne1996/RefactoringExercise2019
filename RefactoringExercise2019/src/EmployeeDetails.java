@@ -762,6 +762,15 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		//v.validate2(ppsField, searchBySurnameField, firstNameField, genderCombo, departmentCombo);
 		boolean valid = v.validate2(ppsField, searchBySurnameField, firstNameField, genderCombo, departmentCombo);
 		
+		if (ppsField.isEditable() ) {
+			ppsField.setBackground(Colors.color_red);
+
+				valid = false;
+
+			
+			} 
+		
+		if (valid = true){
 		try {// try to get values from text field
 			Double.parseDouble(salaryField.getText());
 			// check if salary is greater than 0
@@ -786,6 +795,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// set text field to white colour if text fields are editable
 		if (ppsField.isEditable())
 			setToWhite();
+		}
 		
 		return valid;
 	}
